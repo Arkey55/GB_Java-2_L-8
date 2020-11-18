@@ -13,8 +13,6 @@ public class MyLinkedList implements MyList {
         if (currentElem == null){
             currentElem = current;
             lastElem = current;
-//            currentElem.prev = null;
-//            lastElem.next = null;
             size++;
             return;
         }
@@ -29,25 +27,26 @@ public class MyLinkedList implements MyList {
     @Override
     public boolean remove(String val) {
         if (currentElem.val.equals(val)) {
-            Node del = currentElem;
-            currentElem = del.next;
+            Node node = currentElem;
+            currentElem = node.next;
             currentElem.prev = null;
             size--;
             return true;
         }
 
-        Node del = currentElem;
-        Node current = lastElem.next;
+        // не работает с обратной итерацией
+        Node prev = currentElem;
+        Node current = currentElem.next;
         while(current != null) {
             if (current.val.equals(val)) {
-                del.setNext(current.next);
+                prev.setNext(current.next);
+                prev.setPrev(prev.prev);
                 size--;
                 return true;
             }
-            del = current;
+            prev = current;
             current = current.next;
         }
-
         return false;
     }
 

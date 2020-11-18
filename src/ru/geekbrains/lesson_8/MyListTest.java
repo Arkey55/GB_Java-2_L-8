@@ -16,7 +16,7 @@ public class MyListTest {
 
         System.out.println(list);
         System.out.println("Get: " + list.get(2));
-        list.remove("B");
+        list.remove("A");
         System.out.println(list);
 
         GBIterator iter = list.iterator();
