@@ -40,7 +40,6 @@ public class MyLinkedList implements MyList {
         while(current != null) {
             if (current.val.equals(val)) {
                 prev.setNext(current.next);
-                prev.setPrev(prev.prev);
                 size--;
                 return true;
             }
