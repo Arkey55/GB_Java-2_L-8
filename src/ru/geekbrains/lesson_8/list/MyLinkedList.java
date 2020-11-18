@@ -44,9 +44,8 @@ public class MyLinkedList implements MyList {
                 Node last = lastElem;
                 Node prevLast = lastElem.prev;
                 while (prevLast != null){
-                    if (prevLast.val.equals(val)){
+                    if (prevLast == current){
                         last.setPrev(prevLast.prev);
-                        break;
                     }
                     last = prevLast;
                     prevLast = prevLast.prev;
