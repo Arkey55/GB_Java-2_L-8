@@ -33,7 +33,7 @@ public class MyLinkedList implements MyList {
             size--;
             return true;
         }
-
+        //========================================
         Node prev = currentElem;
         Node current = currentElem.next;
         while(current != null) {
@@ -102,21 +102,17 @@ public class MyLinkedList implements MyList {
         private String val;
         private Node next;
 
-        public Node(String val) {
-            this.val = val;
-        }
-
         private Node(Node prev, String val, Node next) {
             this.prev = prev;
             this.val = val;
             this.next = next;
         }
 
-        public void setNext(Node next) {
+        private void setNext(Node next) {
             this.next = next;
         }
 
-        public void setPrev(Node prev) {
+        private void setPrev(Node prev) {
             this.prev = prev;
         }
 
