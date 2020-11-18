@@ -3,64 +3,48 @@ package ru.geekbrains.lesson_8.list;
 import ru.geekbrains.lesson_8.list.iterator.GBIterator;
 
 public class MyLinkedList implements MyList {
-    private Node current;
-    private Node first;
-    private Node last;
+    private Node currentElem;
+    private Node lastElem;
     private int size;
-
-    public Node getFirst() {
-        return first;
-    }
-
-    public Node getLast() {
-        return last;
-    }
 
     @Override
     public void add(String val) {
-        current = new Node(null, val, null);
-        if (first == null){
-            last = current;
-            first = current;
+        Node current = new Node(null, val, null);
+        if (currentElem == null){
+            currentElem = current;
+            lastElem = current;
+//            currentElem.prev = null;
+//            lastElem.next = null;
             size++;
             return;
         }
-        addLast(last, val);
+        lastElem.next = current;
+        current.prev = lastElem;
+        lastElem = current;
+        lastElem.next = null;
         size++;
+
     }
-
-    private void addLast(Node last, String val){
-        if (last.next == null){
-            Node node = new Node(last, val, null);
-            last.next = node;
-            this.last = node;
-            return;
-        }
-        addLast(last.next, val);
-    }
-
-
 
     @Override
     public boolean remove(String val) {
-        if (first.val.equals(val)) {
-            first = first.next;
-//            last = null;
+        if (currentElem.val.equals(val)) {
+            Node del = currentElem;
+            currentElem = del.next;
+            currentElem.prev = null;
             size--;
             return true;
         }
 
-//        Node prevPrev = first.prev;
-        Node prev = first;
-        Node current = first.next;
+        Node del = currentElem;
+        Node current = lastElem.next;
         while(current != null) {
             if (current.val.equals(val)) {
-                prev.setNext(current.next);
+                del.setNext(current.next);
                 size--;
                 return true;
             }
-//            prevPrev = current.prev;
-            prev = current;
+            del = current;
             current = current.next;
         }
 
@@ -74,7 +58,7 @@ public class MyLinkedList implements MyList {
 
     @Override
     public String get(int index) {
-        Node node = first;
+        Node node = currentElem;
         if (index == 0){
             return node.val;
         }
@@ -90,14 +74,14 @@ public class MyLinkedList implements MyList {
     @Override
     public String toString() {
         return "MyLinkedList{" +
-                "first=" + first +
-//                "last=" + last +
+                "first=" + currentElem + "\n" +
+                "last=" + lastElem +
                 '}';
     }
 
     @Override
     public GBIterator iterator() {
-        return new MyIterator(first, last);
+        return new MyIterator(currentElem, lastElem);
     }
 
     //==================================================================================================================
@@ -105,6 +89,10 @@ public class MyLinkedList implements MyList {
         private Node prev;
         private String val;
         private Node next;
+
+        public Node(String val) {
+            this.val = val;
+        }
 
         private Node(Node prev, String val, Node next) {
             this.prev = prev;
@@ -114,6 +102,10 @@ public class MyLinkedList implements MyList {
 
         public void setNext(Node next) {
             this.next = next;
+        }
+
+        public void setPrev(Node prev) {
+            this.prev = prev;
         }
 
         @Override

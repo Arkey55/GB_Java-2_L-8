@@ -13,8 +13,6 @@ public class MyListTest {
         list.add("B");
         list.add("D");
         list.add("E");
-//        System.out.println(((MyLinkedList) list).getFirst());
-        System.out.println(((MyLinkedList) list).getLast());
 
         System.out.println(list);
         System.out.println("Get: " + list.get(2));
