@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson_8.simpleList;
+package ru.geekbrains.lesson_8.tests;
 
 public class Node {
     Node prev;
