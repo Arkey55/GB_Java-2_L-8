@@ -34,7 +34,6 @@ public class MyLinkedList implements MyList {
             return true;
         }
 
-        // не работает с обратной итерацией
         Node prev = currentElem;
         Node current = currentElem.next;
         while(current != null) {
