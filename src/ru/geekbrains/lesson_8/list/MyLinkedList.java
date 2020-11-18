@@ -74,6 +74,16 @@ public class MyLinkedList implements MyList {
 
     @Override
     public String get(int index) {
+        Node node = first;
+        if (index == 0){
+            return node.val;
+        }
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+            if (i == index - 1){
+                return node.val;
+            }
+        }
         return null;
     }
 
