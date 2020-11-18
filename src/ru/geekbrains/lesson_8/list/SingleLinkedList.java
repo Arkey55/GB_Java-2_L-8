@@ -54,7 +54,7 @@ public class SingleLinkedList implements GBList {
     public boolean remove(String val) {
         if (first.val.equals(val)) {
             first = first.next;
-            last = null;
+//            last = null;
             size--;
             return true;
         }
